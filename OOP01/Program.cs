@@ -8,11 +8,6 @@
 
             /*
              * QUESTION 1:
-             * a) What happens when a DeliveryAddress variable is copied into another variable and the copy is modified?
-             * b) What happens when a Customer variable is copied into another variable and one variable modifies the object?
-             * 
-             * ANSWER:
-             * 
              * a) DeliveryAddress is a 'struct' (Value Type):
              *    - When copied into another variable, a completely independent COPY of the entire data value 
              *      is created in memory (on the Stack).
@@ -26,7 +21,28 @@
              */
             #endregion
 
+            #region Question 2: Encapsulation and Design Improvements
 
+            /*
+             * QUESTION 2:
+             * a) Three problems with this design:
+             *    1. Public Fields: Fields are declared as 'public', giving external code direct access to change them 
+             *       without any control or restriction.
+             *    2. Lack of Data Validation: There are no boundary checks, meaning invalid data can easily be assigned 
+             *       (e.g., Weight = -15 or DeliveryFee = -500).
+             *    3. Risk of Null/Empty Data: Fields like 'Description' can be set to null or empty whitespace strings, 
+             *       leading to an inconsistent state for the object.
+             * 
+             * b) How Private Fields & Public Properties improve this design:
+             *    1. Data Hiding (Private Fields): By changing fields to 'private', we hide the internal state of the 
+             *       object and block direct external access.
+             *    2. Controlled Access & Validation (Public Properties): Public properties act as gateways. Inside their 
+             *       'set' accessors, we can add validation logic to inspect incoming values before updating the field.
+             *    3. State Preservation: If an invalid value is assigned, the property setter can reject it and keep 
+             *       the previous valid state intact.
+             */
+
+            #endregion
         }
     }
 }
